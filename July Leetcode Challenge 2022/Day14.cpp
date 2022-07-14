@@ -11,13 +11,14 @@
  */
 class Solution {
 public:
-    TreeNode*construct(vector<int>& preorder, vector<int>& inorder,int startp,int endp,int starti,int endi)
+    int startp=0;
+    TreeNode*construct(vector<int>& preorder, vector<int>& inorder,int starti,int endi)
     {
-        if(startp>endp||starti>endi)
+        if(starti>endi)
         {
             return NULL;
         }
-        TreeNode*root=new TreeNode(preorder[startp]);
+        TreeNode*root=new TreeNode(preorder[startp++]);
         int k=0;
         for(int i=starti;i<=endi;i++)
         {
@@ -27,8 +28,8 @@ public:
                 break;
              }
         }
-        root->left=construct(preorder,inorder,startp+1, startp+(k-starti), starti,k-1);
-         root->right=construct(preorder,inorder,startp+(k-starti+1), endp, k+1, endi);
+        root->left=construct(preorder,inorder, starti,k-1);
+         root->right=construct(preorder,inorder, k+1, endi);
         return root;
     }
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
@@ -37,6 +38,6 @@ public:
         {
             return NULL;
         }
-        return construct(preorder,inorder,0,n-1,0,n);
+        return construct(preorder,inorder,0,n-1);
     }
 };
