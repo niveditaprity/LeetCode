@@ -6,7 +6,7 @@ public:
         {
           for(int j=0;j<=i;j++)
           {
-              rows[i].emplace_back(j>0&&j<i?rows[i-1][j]+rows[i-1][j-1]:1);
+              rows[i].push_back(j>0&&j<i?rows[i-1][j]+rows[i-1][j-1]:1);
           }
             
         }
