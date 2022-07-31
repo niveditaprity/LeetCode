@@ -50,16 +50,16 @@ public:
     
     int sumRange(int i, int l, int r, int left, int right)
     {
-        if(left>right)
+        if(r < left or l > right)
         {
             return 0;
         }
-        if(l == left && r == right)
+        if(l >=left && right >= r)
         {
             return seg[i];
         }
         int mid = l + (r - l) / 2;
-        return sumRange(2*i+1,l,mid,left,min(mid,right)) + sumRange(2*i+2,mid+1,r,max(mid+1,left),right);
+        return sumRange(2*i+1,l,mid,left,right) + sumRange(2*i+2,mid+1,r,left,right);
     }
     
     int sumRange(int left, int right) {
