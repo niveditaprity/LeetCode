@@ -1,0 +1,26 @@
+class Solution {
+public:
+    double myPow(double x, int n) {
+        bool sign =false;
+        if(n<0)
+        {
+            sign =true;
+        }
+        if(sign)
+        {
+            n = abs(n);
+            while(n>0)
+            {
+             x=x*x;
+                n=n/2;
+            }
+            return 1/x;
+        }
+        while(n>0)
+        {
+           x=x*x;
+            n=n/2;
+        }
+        return x;
+    }
+};
